@@ -1,4 +1,5 @@
 const https = require('https');
+const fs = require('fs');
 var querystring = require('querystring');
 
 // --------------------------------------------------------
@@ -6,6 +7,9 @@ var querystring = require('querystring');
 // 0. 設定
 //
 // --------------------------------------------------------
+
+// 下載要取的檔案名稱
+var result_file_name = "result.dcm"
 
 // keyclock取得token的網址
 var keyclock_host = "oauth.dicom.tw";
@@ -17,8 +21,8 @@ var username = "test";
 var password = "test1234";
 
 // raccoon網址
-var raccoon_host = "fbe4-111-251-190-209.ngrok.io";
-var raccoon_url = "/dicom-web/studies/1.2.392.200036.9116.2.6.1.48.1215619068.1461311730.989789";
+var raccoon_host = "180f-111-251-144-121.ngrok.io";
+var raccoon_url = "/api/dicom/wado/?requestType=WADO&studyUID=1.2.392.200036.9116.2.6.1.48.1215619068.1461311730.989789&seriesUID=1.2.392.200036.9116.2.6.1.48.1215619068.1461312448.885264&objectUID=1.2.392.200036.9116.2.6.1.48.1215619068.1461312530.871296&contentType=application/dicom";
 
 // --------------------------------------------------------
 //
@@ -72,12 +76,20 @@ var req = https.request(options, res =>
     var req2 = https.request(options2, res => 
     {
       console.log(`statusCode: ${res.statusCode}`);
+
+      var stream = fs.createWriteStream(result_file_name,{encoding: 'utf8'});
+      stream.on('finish', () => {
+        console.log('File Saved !');
+      });
+      res.pipe(stream);
+
       res.on('data', d => {
         //process.stdout.write(d);
       });
 
       res.on('end', function () 
       {
+
         if (res.statusCode == 200) 
         {
           console.log(`==============================\n2.Raccoon測試 - OK\n==============================\n`);
