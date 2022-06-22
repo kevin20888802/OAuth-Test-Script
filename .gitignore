@@ -1,0 +1,5 @@
+# ignore external lib
+node_modules/
+
+#ignore file upload folder
+files/

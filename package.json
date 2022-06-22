@@ -1,0 +1,23 @@
+{
+  "name": "oauth-test-0",
+  "version": "1.0.0",
+  "description": "oauth test script",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevin20888802/OAuth-Test-Script.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevin20888802/OAuth-Test-Script/issues"
+  },
+  "homepage": "https://github.com/kevin20888802/OAuth-Test-Script#readme",
+  "dependencies": {
+    "@tensorflow/tfjs-node": "^3.18.0",
+    "request": "^2.88.2"
+  }
+}
