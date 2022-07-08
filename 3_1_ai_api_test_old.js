@@ -3,8 +3,10 @@ const fs = require('fs');
 const tfnode = require('@tensorflow/tfjs-node');
 
 var upload_file_name = "upd.png";
-var api_host = "1287-111-251-144-121.ngrok.io";
-var api_url = "/guess";
+//var api_host = "1287-111-251-144-121.ngrok.io";
+//var api_url = "/guess";
+var api_host = "apiserv.v6.rocks";
+var api_url = "/kctest/guess";
 
 // --------------------------------------------------------
 //
@@ -25,7 +27,7 @@ var api_url = "/guess";
 // (因為沒有開帳號密碼直接登入的功能，請使用postman先取得token後複製貼上至此。)
 // --------------------------------------------------------
 
-var access_token = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJGZllJd3k1TGEzUlJZbjFvVmFYaTNzamNscU5mMFRVN1c5U00tMnZ2Ry1JIn0.eyJleHAiOjE2NTY1MDQ5NzUsImlhdCI6MTY1NTkwMDE3NSwiYXV0aF90aW1lIjoxNjU1OTAwMTc1LCJqdGkiOiJjOTVmOTQ0NC1kNDUxLTQ0NWEtOWQ4YS03NDFhNmFhNWQ4MDUiLCJpc3MiOiJodHRwczovL2FpYXV0aC52Ni5yb2Nrcy9hdXRoL3JlYWxtcy9kYXRhc2hhcmluZyIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJjOTY5ODQ1YS01ZWI0LTRmMzAtYjMxMS1lMzA5Y2MyNDhkNjUiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJhcGlzZXJ2ZXIiLCJzZXNzaW9uX3N0YXRlIjoiNDRiOTE2OTEtNWYyYy00ZTZmLWIxMDEtZjJkNTA4Y2IxZTg2IiwiYWNyIjoiMSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtZGF0YXNoYXJpbmciLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgb3BlbmlkZW1haWwiLCJzaWQiOiI0NGI5MTY5MS01ZjJjLTRlNmYtYjEwMS1mMmQ1MDhjYjFlODYiLCJuYW1lIjoiSG9uZ3hpbiBXYW5nIiwicHJlZmVycmVkX3VzZXJuYW1lIjoia2V2aW4yMDg4IiwiZ2l2ZW5fbmFtZSI6Ikhvbmd4aW4iLCJmYW1pbHlfbmFtZSI6IldhbmciLCJlbWFpbCI6ImtldmluMjA4ODg4MDJAZ21haWwuY29tIn0.MXLzUVNbH8thx7wOatUpdtIsHtulxFAJHIKz0-T_9kW9oX1_KZnc1StCkItRQmW3wuxjne3-FQHh3yzILDELBHTmDdkK12MHdZZxDKS0FUj89QvklW7p7PnjtQn8KjI1C1bMEddFmtUznCACJoqzKfcrQbzhREBxY3BowGnAbuef4ZrK3XPE07iFpcblc2NRYxrnT0V45z1yZ7Y3MV_-U7fP7JCoeGy6cEYbXjxBBZYnrrR6zTDgsV7HjoAVc32Zl6cS2yklivC_X0cA3nrT2_x6tE1lHptWrBm-jLXG6bIWvHfz_fkthvSRGcEuw2kaaU6nKowyWQGdSGVSkthY4g";
+var access_token = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJGZllJd3k1TGEzUlJZbjFvVmFYaTNzamNscU5mMFRVN1c5U00tMnZ2Ry1JIn0.eyJleHAiOjE2NTY2NTM3ODgsImlhdCI6MTY1NjA0OTc5NywiYXV0aF90aW1lIjoxNjU2MDQ4OTg4LCJqdGkiOiIxYmNlMmZhZS1iMWQ4LTQzNzUtOTYyZi1iN2I0MjFhZTgwM2IiLCJpc3MiOiJodHRwczovL2FpYXV0aC52Ni5yb2Nrcy9hdXRoL3JlYWxtcy9kYXRhc2hhcmluZyIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJjOTY5ODQ1YS01ZWI0LTRmMzAtYjMxMS1lMzA5Y2MyNDhkNjUiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJhcGlzZXJ2ZXIiLCJzZXNzaW9uX3N0YXRlIjoiMzE4Mjg2NjMtMDk5MC00ZWM1LTgzMDctMjdmOTU5MmQ4ZmE3IiwiYWNyIjoiMCIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtZGF0YXNoYXJpbmciLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgb3BlbmlkZW1haWwiLCJzaWQiOiIzMTgyODY2My0wOTkwLTRlYzUtODMwNy0yN2Y5NTkyZDhmYTciLCJuYW1lIjoiSG9uZ3hpbiBXYW5nIiwicHJlZmVycmVkX3VzZXJuYW1lIjoia2V2aW4yMDg4IiwiZ2l2ZW5fbmFtZSI6Ikhvbmd4aW4iLCJmYW1pbHlfbmFtZSI6IldhbmciLCJlbWFpbCI6ImtldmluMjA4ODg4MDJAZ21haWwuY29tIn0.sBekrbQ9MMucmV67t2kRV88FJAuM6L0YIqTGC6l667zHGrXbiNtSOlzTM23VZRP-q8nbg4nCbQvI-wxG0u-yynebKy71QxkUaPxas2tu8TDgMbyqOupy_0RILse1b-CDz7Fr0ON0WTBclNUkmcsdv3aKl9GFEPf8_OYYO3qig5k_20DLu-lRPbPkhY4fCUy6VVIbvcCfKm2aIAdTNugZckvGQo0wggV4CpucXUPHsDXlm0-oGRPfMXZjtoel-8wbUb-2GYfYElQKTa6WzYqLgBVksQmhgDTNa9X6Ay2rJUOzT-G84xt-dufYxu6Nz_h9DKduEqj_2lgyVj2M6Gay3Q";
 
 // --------------------------------------------------------
 //
@@ -55,6 +57,7 @@ function (err, resp, body)
     if (err) 
     {
         console.log('Error!');
+        console.log(err);
     } 
     else 
     {

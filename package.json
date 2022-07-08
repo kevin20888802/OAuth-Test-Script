@@ -18,6 +18,7 @@
   "homepage": "https://github.com/kevin20888802/OAuth-Test-Script#readme",
   "dependencies": {
     "@tensorflow/tfjs-node": "^3.18.0",
+    "form-data": "^4.0.0",
     "request": "^2.88.2"
   }
 }

@@ -1,0 +1,276 @@
+{
+	"info": {
+		"_postman_id": "8d78e108-0855-4757-b9de-72e976ceac38",
+		"name": "CKAN",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://ckan.dicom.tw/api/3/action/resource_create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJaUTZneG1pZHJKSXJVdTNFMWswUnZEUFFRaWNleGRQLVRhTmxLU2hDUjlOMWVnek02eGhFLTRYVjJWUFVfam9vOUpJU2J3Q2hHbmJnbXd0MCIsImlhdCI6MTY1NzE3OTgzNX0.VodnicpSYf1p741pPtE71H8iW3Kxqsg3iw04qbMdoLs",
+						"type": "default"
+					},
+					{
+						"key": "X-CKAN-API-Key",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJaUTZneG1pZHJKSXJVdTNFMWswUnZEUFFRaWNleGRQLVRhTmxLU2hDUjlOMWVnek02eGhFLTRYVjJWUFVfam9vOUpJU2J3Q2hHbmJnbXd0MCIsImlhdCI6MTY1NzE3OTgzNX0.VodnicpSYf1p741pPtE71H8iW3Kxqsg3iw04qbMdoLs",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "package_id",
+							"value": "dicom_20220707_1",
+							"type": "default"
+						},
+						{
+							"key": "upload",
+							"type": "file",
+							"src": "/D:/程式/OAuth-Test-Script-main/OAuth-Test-Script-main/out.csv"
+						},
+						{
+							"key": "name",
+							"value": "data_0",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "format",
+							"value": "csv",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://ckan.dicom.tw/api/3/action/resource_create",
+					"protocol": "https",
+					"host": [
+						"ckan",
+						"dicom",
+						"tw"
+					],
+					"path": [
+						"api",
+						"3",
+						"action",
+						"resource_create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://ckan.dicom.tw/api/action/package_create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJaUTZneG1pZHJKSXJVdTNFMWswUnZEUFFRaWNleGRQLVRhTmxLU2hDUjlOMWVnek02eGhFLTRYVjJWUFVfam9vOUpJU2J3Q2hHbmJnbXd0MCIsImlhdCI6MTY1NzE3OTgzNX0.VodnicpSYf1p741pPtE71H8iW3Kxqsg3iw04qbMdoLs",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/D:/程式/OAuth-Test-Script-main/OAuth-Test-Script-main/out.csv",
+							"disabled": true
+						},
+						{
+							"key": "key",
+							"value": "dicom_20220707_0",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "dicom_20220707_1",
+							"type": "default"
+						},
+						{
+							"key": "notes",
+							"value": "dicom test123",
+							"type": "default"
+						},
+						{
+							"key": "owner_org",
+							"value": "cylab123456",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://ckan.dicom.tw/api/action/package_create",
+					"protocol": "https",
+					"host": [
+						"ckan",
+						"dicom",
+						"tw"
+					],
+					"path": [
+						"api",
+						"action",
+						"package_create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://ckan.dicom.tw/api/action/organization_create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJaUTZneG1pZHJKSXJVdTNFMWswUnZEUFFRaWNleGRQLVRhTmxLU2hDUjlOMWVnek02eGhFLTRYVjJWUFVfam9vOUpJU2J3Q2hHbmJnbXd0MCIsImlhdCI6MTY1NzE3OTgzNX0.VodnicpSYf1p741pPtE71H8iW3Kxqsg3iw04qbMdoLs",
+						"type": "default"
+					},
+					{
+						"key": "X-CKAN-API-Key",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJaUTZneG1pZHJKSXJVdTNFMWswUnZEUFFRaWNleGRQLVRhTmxLU2hDUjlOMWVnek02eGhFLTRYVjJWUFVfam9vOUpJU2J3Q2hHbmJnbXd0MCIsImlhdCI6MTY1NzE3OTgzNX0.VodnicpSYf1p741pPtE71H8iW3Kxqsg3iw04qbMdoLs",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "package_id",
+							"value": "dicom_20220707_0",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "upload",
+							"type": "file",
+							"src": "/D:/程式/OAuth-Test-Script-main/OAuth-Test-Script-main/out.csv",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "cylab123456",
+							"type": "default"
+						},
+						{
+							"key": "title",
+							"value": "cylab123456",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "llaabb",
+							"type": "default"
+						},
+						{
+							"key": "state",
+							"value": "active",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://ckan.dicom.tw/api/action/organization_create",
+					"protocol": "https",
+					"host": [
+						"ckan",
+						"dicom",
+						"tw"
+					],
+					"path": [
+						"api",
+						"action",
+						"organization_create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://oauth.dicom.tw/realms/Cylab/protocol/openid-connect/token",
+			"request": {
+				"auth": {
+					"type": "oauth1",
+					"oauth1": [
+						{
+							"key": "signatureMethod",
+							"value": "HMAC-SHA1",
+							"type": "string"
+						},
+						{
+							"key": "version",
+							"value": "1.0",
+							"type": "string"
+						},
+						{
+							"key": "addParamsToHeader",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "addEmptyParamsToSign",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "cykan-saml2",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "test",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "test1234",
+							"type": "default"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://oauth.dicom.tw/realms/Cylab/protocol/openid-connect/token",
+					"protocol": "https",
+					"host": [
+						"oauth",
+						"dicom",
+						"tw"
+					],
+					"path": [
+						"realms",
+						"Cylab",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

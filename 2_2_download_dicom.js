@@ -15,7 +15,7 @@ var result_file_name = "result.dcm"
 var keyclock_host = "oauth.dicom.tw";
 var keyclock_token_endpoint = "/realms/Cylab/protocol/openid-connect/token";
 
-// 認證資訊
+// 認證資訊 (如果是在瀏覽器上建議直接連到keycloak的登入畫面做認證)
 var client_id = "account";
 var username = "test";
 var password = "test1234";
@@ -82,10 +82,6 @@ var req = https.request(options, res =>
         console.log('File Saved !');
       });
       res.pipe(stream);
-
-      res.on('data', d => {
-        //process.stdout.write(d);
-      });
 
       res.on('end', function () 
       {
