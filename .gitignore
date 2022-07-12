@@ -2,4 +2,7 @@
 node_modules/
 
 #ignore file upload folder
-files/
+uploads/
+
+#ignore file download folder
+downloads/

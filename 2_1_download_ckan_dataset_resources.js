@@ -62,6 +62,7 @@ async function get_ckan_dataset_resource_links(i_dataset_id)
                 if(res.statusCode == 200)
                 {
                     console.log(`==============================\n1.讀取資料集及其所有resource的檔案下載網址 - SUCCESS\n==============================\n`);
+                    console.log(JSON.parse(_data)["result"]["resources"]);
                     resolve(JSON.parse(_data)["result"]["resources"]);
                 }
                 else
@@ -91,7 +92,7 @@ async function get_ckan_dataset_resource_links(i_dataset_id)
 //
 // --------------------------------------------------------
 
-async function download_file(i_url)
+async function download_file(i_url,_filename)
 {
     return new Promise ((resolve, reject) => 
     {
@@ -118,20 +119,18 @@ async function download_file(i_url)
             {
                 if (res.statusCode == 200) 
                 {
-                    let filename = res.headers['content-disposition'].split('filename=')[1].split('.')[0].replace('"','');
-                    let extension = res.headers['content-disposition'].split('.')[1].split(';')[0].replace('"','');
-                    fs.rename(`./${download_folder}/temp_download.tmp`, `./${download_folder}/${filename}.${extension}`, (error) => 
+                    fs.rename(`./${download_folder}/temp_download.tmp`, `./${download_folder}/${_filename}`, (error) => 
                     { 
                         if (error) 
                         { 
-                            console.log(`==============================\n2.下載檔案${filename}.${extension} - FAILED\n==============================\n`);
+                            console.log(`==============================\n2.下載檔案${_filename} - FAILED\n==============================\n`);
                             console.log("重新命名失敗，請檢查檔案是否被使用，並且資料夾有存取權限。");
                             console.log(error); 
                             reject(error);
                         } 
                         else 
                         { 
-                            console.log(`==============================\n2.下載檔案${filename}.${extension} - OK\n==============================\n`);
+                            console.log(`==============================\n2.下載檔案${_filename} - OK\n==============================\n`);
                             resolve(res);
                         } 
                     });
@@ -152,7 +151,15 @@ async function main()
     let resource_metadata = await get_ckan_dataset_resource_links(dataset_id);
     for(let i = 0; i < resource_metadata.length; i++)
     {
-        await download_file(resource_metadata[i]["upload"]);
+        let _fname = resource_metadata[i]["name"] + "." + resource_metadata[i]["format"];
+        if(resource_metadata[i]["url"] != undefined)
+        {
+            await download_file(resource_metadata[i]["url"],_fname);
+        }
+        else if(resource_metadata[i]["upload"] != undefined)
+        {
+            await download_file(resource_metadata[i]["upload"],_fname);
+        }
     }
 }
 main();

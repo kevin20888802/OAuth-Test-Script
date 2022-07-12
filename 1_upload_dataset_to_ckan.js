@@ -10,10 +10,11 @@ const FormData = require('form-data');
 // --------------------------------------------------------
 
 // 上傳的資料集csv檔案名稱(或網址，需要把file_is_url改成true。)
-var upload_file_path = "http://dl.dropboxusercontent.com/s/1yagot9ih6z2rdm/out.csv";
+//var upload_file_path = "http://dl.dropboxusercontent.com/s/1yagot9ih6z2rdm/out.csv";
+var upload_file_path = "./out.csv";
 var upload_file_name = "out.csv";
 var upload_format = "csv"; // 上傳的檔案格式為何
-var file_is_url = true;
+var file_is_url = false;
 
 // 認證資訊( 需要開啟keycloak client的Direct Access Grants Enabled ， 如未開啟則需手動取得token。)
 // 並且在ckan裡面需要有相對應的權限(如要從0開始則需要有Sysadmin管理員權限來建立organization)
