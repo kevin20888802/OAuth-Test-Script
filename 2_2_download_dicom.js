@@ -1,7 +1,6 @@
 const https = require('https');
 const fs = require('fs');
 const querystring = require('querystring');
-var iconvlite = require("iconv-lite");
 
 // --------------------------------------------------------
 //
@@ -22,14 +21,13 @@ var keyclock_token_endpoint = "/realms/Cylab/protocol/openid-connect/token";
 
 // 認證資訊 (如果是在瀏覽器上建議直接連到keycloak的登入畫面做認證)
 var client_id = "account";
-var username = "kevin2088";
+var username = "test1111";
 var password = "test1234";
 
-var ckan_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJ6cVZSVjBaZG5ORWRDc1B3UUNGRGx5Ymw5aFhxenVPcTN1TWFNX0M5aHFQSV9KS2dUUzZJRDNfRDljaDc2YzdxclQxa0s1bDlGS0ExUGtxTiIsImlhdCI6MTY1ODIzMjU0M30.pNq0svHr6fn5ztIVTax16yzaQ1lT8dUBpmmwlli7MSw";
-var ckan_package_id = "f69404c0-51b8-4d1f-9e16-125c37744540";
+var ckan_package_id = "dicom_20220707_1";
 
 // raccoon網址
-var raccoon_host = "d1d0-111-251-169-42.ngrok.io";
+var raccoon_host = "d812-111-251-167-165.ngrok.io";
 var raccoon_url = "/dicom-web/studies/1.2.276.0.7230010.3.1.4.1637094980.13328.1608080296.30";
 
 // --------------------------------------------------------
@@ -79,7 +77,6 @@ var req = https.request(options, res =>
       headers: {
         'Accept': "multipart/related; type=application/dicom",
         'authorization': access_token,
-        'ckan_token': ckan_token,
         'package_id': ckan_package_id
       },
     };
